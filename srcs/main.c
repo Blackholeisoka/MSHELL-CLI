@@ -16,10 +16,6 @@
 #include <stdlib.h>
 #include "../includes/ft_tools.h"
 
-#define HEADER "header.txt"
-#define TRUE 1
-#define FALSE 0
-
 void	ft_print_current_path(void)
 {
 	char	*str_path;
@@ -42,6 +38,7 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	input = NULL;
+	ft_putstr(CLEAR);
 	ft_print_file(HEADER);
 
 	while (TRUE)

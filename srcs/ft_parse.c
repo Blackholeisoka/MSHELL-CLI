@@ -22,10 +22,10 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"pwd", ft_pwd},
 		{"clear", ft_clear},
 		{"cd", ft_cd},
+		{"cat", ft_cat},
 		//{"ls", ft_ls},
 		//{"mv", ft_mv},
 		//{"cp", ft_cp},
-		//{"cat", ft_cat},
 		{NULL, NULL}
 	};
 	return (parsing);

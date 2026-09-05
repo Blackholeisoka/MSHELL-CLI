@@ -37,6 +37,7 @@ void	ft_print_file(char *str);
 int	ft_pwd(char **arr);
 int	ft_clear(char **arr);
 int	ft_cd(char **arr);
+int	ft_cat(char **arr);
 t_parsing	*ft_get_struct_parsing(void);
 
 #endif

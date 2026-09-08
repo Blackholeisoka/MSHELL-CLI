@@ -11,19 +11,22 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-//#include <stdio.h>
-//#include <string.h>
-//#include <stdlib.h>
 #include "../includes/ft_tools.h"
 
 t_parsing	*ft_get_struct_parsing(void)
 {
 	 static t_parsing	parsing[] = {
 		{"pwd", ft_pwd},
+		{"ls", ft_ls},
 		{"clear", ft_clear},
 		{"cd", ft_cd},
 		{"cat", ft_cat},
-		//{"ls", ft_ls},
+		{"echo", ft_echo},
+		{"whoami", ft_whoami},
+		{"touch", ft_touch},
+		{"mkdir", ft_mkdir},
+		{"rmdir", ft_rmdir},
+		{"rm", ft_rm},
 		//{"mv", ft_mv},
 		//{"cp", ft_cp},
 		{NULL, NULL}
@@ -46,5 +49,8 @@ int	ft_parse_cmd(char *str)
 			return (arr[i].function(string_params));
 		i++;
 	}
-	return (0);
+	ft_putstr("command not found: ");
+	ft_putstr(string_params[0]);
+	ft_putstr("\n");
+	return (127);
 }

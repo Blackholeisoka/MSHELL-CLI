@@ -21,6 +21,7 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"clear", ft_clear},
 		{"cd", ft_cd},
 		{"cat", ft_cat},
+		{"wc", ft_wc},
 		{"echo", ft_echo},
 		{"whoami", ft_whoami},
 		{"touch", ft_touch},
@@ -31,6 +32,8 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"printenv", ft_printenv},
 		{"export", ft_export},
 		{"diff", ft_diff},
+		{"head", ft_head},
+		{"tail", ft_tail},
 		//{"mv", ft_mv},
 		//{"cp", ft_cp},
 		{NULL, NULL}

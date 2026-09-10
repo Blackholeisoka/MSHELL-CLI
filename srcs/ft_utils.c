@@ -11,8 +11,11 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+
+#define TRUE 1
 
 int	ft_strlen(char *str)
 {
@@ -44,6 +47,48 @@ void	ft_putstr(char *str)
 	    	write(1, &str[i], 1);
 		i++;
 	}
+}
+
+int	ft_atoi(char *str)
+{
+	int	sign;
+	int	result;
+	int	i;
+
+	sign = 1;
+	result = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-') sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		result = result * 10 + (str[i++] - '0');
+	return (result * sign);
+}
+
+int	ft_file_count_line(char *file)
+{
+	FILE *f1;
+	char	*r1;
+	char	f1_line[1024];
+	int	count;
+
+	f1 = fopen(file, "r"); if (!f1)
+		return (-1);
+	count = 0;
+	while (TRUE)
+	{
+		f1_line[0] = '\0';
+		r1 = fgets(f1_line, sizeof(f1_line), f1);
+		if (!r1) break ;
+		count++;
+	}
+	fclose(f1);
+	return (count);
 }
 
 char	*ft_get_username(void)

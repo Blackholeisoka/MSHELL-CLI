@@ -27,6 +27,10 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"mkdir", ft_mkdir},
 		{"rmdir", ft_rmdir},
 		{"rm", ft_rm},
+		{"env", ft_env},
+		{"printenv", ft_printenv},
+		{"export", ft_export},
+		{"diff", ft_diff},
 		//{"mv", ft_mv},
 		//{"cp", ft_cp},
 		{NULL, NULL}

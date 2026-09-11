@@ -2,3 +2,4 @@
 *.o
 mshell
 compile_commands.json
+.history

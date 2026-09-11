@@ -126,6 +126,24 @@ void	ft_print_file(char *str)
 	close(fd);
 }
 
+int	ft_write_history(char *input)
+{
+	FILE *f1;
+	int	file_count;
+	char	path_file[1024];
+
+	snprintf(path_file, sizeof(path_file), "%s/.history", getenv("HOME"));
+	file_count = ft_file_count_line(path_file);
+	if (file_count == -1)
+		file_count = 0;
+	f1 = fopen(path_file, "a");
+	if (!f1)
+		return (1);
+	fprintf(f1, "%d: %s\n", file_count + 1, input);
+	fclose(f1);
+	return (0);
+}
+
 char	*ft_skip_whitespaces(char *str)
 {
 	while (*str == 32)

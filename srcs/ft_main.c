@@ -51,6 +51,7 @@ int	main(int argc, char *argv[])
 			input[n - 1] = '\0';
 		if (input[0] == '\0')
 			continue ;
+		ft_write_history(input);
 		if (ft_strcmp(ft_skip_whitespaces(input), "exit") == 0)
 			break ;
 		ft_parse_cmd(input);

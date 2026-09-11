@@ -49,6 +49,7 @@ int	ft_diff(char **arr);
 int	ft_echo(char **arr);
 int	ft_mkdir(char **arr);
 int	ft_printenv(char **arr);
+int	ft_grep(char **arr);
 int	ft_wc(char **arr);
 int	ft_export(char **arr);
 int	ft_rm(char **arr);

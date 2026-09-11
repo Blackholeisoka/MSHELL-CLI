@@ -35,6 +35,7 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"head", ft_head},
 		{"tail", ft_tail},
 		{"history", ft_history},
+		{"grep", ft_grep},
 		//{"mv", ft_mv},
 		//{"cp", ft_cp},
 		{NULL, NULL}

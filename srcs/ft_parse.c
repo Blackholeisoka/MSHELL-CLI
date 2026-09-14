@@ -18,6 +18,10 @@ t_parsing	*ft_get_struct_parsing(void)
 	 static t_parsing	parsing[] = {
 		{"pwd", ft_pwd},
 		{"ls", ft_ls},
+		{"yes", ft_yes},
+		{"ln", ft_ln},
+		{"uniq", ft_uniq},
+		{"tac", ft_tac},
 		{"clear", ft_clear},
 		{"cd", ft_cd},
 		{"cat", ft_cat},
@@ -34,10 +38,14 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"diff", ft_diff},
 		{"head", ft_head},
 		{"tail", ft_tail},
+		{"rev", ft_rev},
 		{"history", ft_history},
 		{"grep", ft_grep},
-		//{"mv", ft_mv},
-		//{"cp", ft_cp},
+		{"which", ft_which},
+		{"date", ft_date},
+		{"dirname", ft_dirname},
+		{"basename", ft_basename},
+		//{"date", ft_date},
 		{NULL, NULL}
 	};
 	return (parsing);

@@ -24,6 +24,13 @@ typedef struct s_parsing
 	int	(*function)(char **input_params);
 }	t_parsing;
 
+typedef struct s_help
+{
+	char	*command;
+	char	*description;
+}	t_help;
+
+
 int	ft_strlen(char *str);
 int	ft_strcmp(char *s1, char *s2);
 int	arr_size(char **arr);
@@ -44,7 +51,11 @@ int	ft_yes(char **arr);
 int	ft_head(char **arr);
 int	ft_uniq(char **arr);
 int	ft_tac(char **arr);
+int	ft_mv(char **arr);
 int	ft_tail(char **arr);
+int	ft_cp(char **arr);
+int	ft_kill(char **arr);
+int	ft_help(char **arr);
 int	ft_history(char **arr);
 int	ft_clear(char **arr);
 int	ft_env(char **arr);

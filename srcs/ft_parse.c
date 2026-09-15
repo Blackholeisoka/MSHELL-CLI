@@ -16,6 +16,7 @@
 t_parsing	*ft_get_struct_parsing(void)
 {
 	 static t_parsing	parsing[] = {
+		{"help", ft_help},
 		{"pwd", ft_pwd},
 		{"ls", ft_ls},
 		{"yes", ft_yes},
@@ -23,7 +24,10 @@ t_parsing	*ft_get_struct_parsing(void)
 		{"uniq", ft_uniq},
 		{"tac", ft_tac},
 		{"clear", ft_clear},
+		{"mv", ft_mv},
 		{"cd", ft_cd},
+		{"cp", ft_cp},
+		{"kill", ft_kill},
 		{"cat", ft_cat},
 		{"wc", ft_wc},
 		{"echo", ft_echo},

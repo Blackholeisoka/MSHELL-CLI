@@ -13,7 +13,6 @@
 #include "../includes/ft_tools.h"
 #include <unistd.h>
 
-
 static t_help	arr_help[] = {
 	{"pwd", "print the current working directory"},
 	{"cd", "change the current directory"},
@@ -88,6 +87,17 @@ static t_help	arr_help_option[] = {
 	{NULL, NULL}
 };
 
+int	ft_max_size(t_help *arr)
+{
+	int	max;
+
+	max = 0;
+	for (int i = 0; arr[i].command != NULL; i++)
+		if (ft_strlen(arr[i].command) > max)
+			max = ft_strlen(arr[i].command);
+	return (max);
+}
+
 int	ft_help_size(t_help *tab)
 {
 	int	i;
@@ -108,7 +118,9 @@ int	ft_help(char **arr)
 		for (int i = 0; arr_help[i].command != NULL; i++)
 		{
 			ft_putstr(arr_help[i].command);
-			ft_putstr(": ");
+			ft_putstr(":");
+			for (int j = 0; j < (ft_max_size(arr_help) - ft_strlen(arr_help[i].command) + 1); j++)
+				ft_putstr(" ");
 			ft_putstr(arr_help[i].description);
 			ft_putstr("\n");
 			ft_putstr("\n");

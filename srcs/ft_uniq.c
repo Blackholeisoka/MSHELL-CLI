@@ -14,15 +14,6 @@
 #include <unistd.h>
 #include <stdio.h>
 
-char	*ft_strcpy(char *dest, char *src)
-{
-	int i;
-	for (i = 0; src[i] != '\0'; i++)
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
-}
-
 void	ft_uniq_helper(char *file, int value)
 {
 	FILE *f1;

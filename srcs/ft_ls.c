@@ -19,6 +19,24 @@
 #include <time.h>
 #include <locale.h>
 
+void	ft_putstr_space(int max, int length)
+{
+	for (int i = 0; i < (max - length) + 1; i++)
+		ft_putstr(" ");
+}
+
+int	ft_size_len(char *path)
+{
+	struct stat	st;
+	char		buf[64];
+
+	stat(path, &st);
+	if (S_ISDIR(st.st_mode))
+		return (1);
+	snprintf(buf, sizeof(buf), "%ld", st.st_size);
+	return (ft_strlen(buf));
+}
+
 int	is_dir_point(char *str)
 {
 	if ((ft_strcmp(str, ".") == 0) || (ft_strcmp(str, "..") == 0))
@@ -80,17 +98,24 @@ void	ft_chmod_print(char *file_or_dir)
 	ft_putstr(((st.st_mode & S_IXOTH) ? "x" : "-"));
 }
 
-void	ft_print_file_size(char *file_or_dir)
+int ft_print_file_size(char *file_or_dir)
 {
 	struct stat	st;
+	char	str_size[1024];
 
 	stat(file_or_dir, &st);
 
 	if (S_ISDIR(st.st_mode))
+	{
 		ft_putstr("-");
+		return (1);
+	}
 	else
+	{
 		ft_putnbr(st.st_size);
-
+		snprintf(str_size, sizeof(str_size), "%ld", st.st_size);
+		return (ft_strlen(str_size));
+	}
 }
 void	ft_print_owner_file(char *file_or_dir)
 {
@@ -122,12 +147,23 @@ void	ft_list_file_stat(char *path)
 	struct dirent	*e;
 	struct stat	st;
 	char	file_or_dir[1024];
+	int	max;
 
+	max = 0;
 	if (!dir)
 	{
 		ft_putstr("ls: cannot open directory\n");
 		return ;
 	}
+	while ((e = readdir(dir)))
+	{
+		if (is_dir_point(e->d_name))
+			continue ;
+		snprintf(file_or_dir, sizeof(file_or_dir), "%s/%s", path, e->d_name);
+		if (ft_size_len(file_or_dir) > max)
+			max = ft_size_len(file_or_dir);
+	}
+	rewinddir(dir);
 	while ((e = readdir(dir)))
 	{
 		snprintf(file_or_dir, sizeof(file_or_dir), "%s/%s", path, e->d_name);
@@ -141,7 +177,7 @@ void	ft_list_file_stat(char *path)
 		ft_chmod_print(file_or_dir);
 		ft_putstr(" ");
 		ft_print_file_size(file_or_dir);
-		ft_putstr(" ");
+		ft_putstr_space(max, ft_size_len(file_or_dir));
 		ft_print_owner_file(file_or_dir);
 		ft_putstr(" ");
 		ft_print_file_date(file_or_dir);

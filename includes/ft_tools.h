@@ -38,6 +38,7 @@ int	ft_parse_cmd(char *str);
 int	ft_atoi(char *str);
 int	ft_file_count_line(char *file);
 int	ft_write_history(char *input);
+char	*ft_strcpy(char *dest, char *src);
 char	*ft_current_path(void);
 char	*ft_get_username(void);
 char	*ft_skip_whitespaces(char *str);

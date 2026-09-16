@@ -12,12 +12,70 @@
 
 #include "../includes/ft_tools.h"
 #include <unistd.h>
+#include <stdio.h>
+#include <sys/stat.h>
+#include <dirent.h>
+
+void	ft_rm_recursive(char *path)
+{
+	struct stat		st;
+	DIR				*dir;
+	struct dirent	*e;
+	char			sub[1024];
+
+	if (stat(path, &st) == -1)
+		return ;
+	if (!S_ISDIR(st.st_mode))
+	{
+		if (unlink(path) == -1)
+		{
+			ft_putstr("rm: cannot remove '");
+			ft_putstr(path);
+			ft_putstr("'\n");
+		}
+		return ;
+	}
+	dir = opendir(path);
+	if (!dir)
+	{
+		ft_putstr("rm: cannot open '");
+		ft_putstr(path);
+		ft_putstr("'\n");
+		return ;
+	}
+	while ((e = readdir(dir)))
+	{
+		if (e->d_name[0] == '.')
+			continue ;
+		snprintf(sub, sizeof(sub), "%s/%s", path, e->d_name);
+		ft_rm_recursive(sub);
+	}
+	closedir(dir);
+	if (rmdir(path) == -1)
+	{
+		ft_putstr("rm: cannot remove directory '");
+		ft_putstr(path);
+		ft_putstr("'\n");
+	}
+}
 
 int	ft_rm(char **arr)
 {
 	if (arr_size(arr) ==  1)
 	{
 			ft_putstr("rm: no such file\n");
+	}
+	else if (arr_size(arr) >= 2 && ft_strcmp(arr[1], "-r") == 0)
+	{
+		if (arr_size(arr) == 2)
+		{
+			ft_putstr("rm: missing operand\n");
+		}
+		else
+		{
+		for (int i = 2; i < arr_size(arr); i++)
+			ft_rm_recursive(arr[i]);
+		}
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -33,8 +91,9 @@ int	ft_rm(char **arr)
 	}
 	else
 	{
-		ft_putstr("rm: bad option: \n");
+		ft_putstr("rm: bad option: ");
 		ft_putstr(arr[1]);
+		ft_putstr("\n");
 	}
 	return (0);
 }

@@ -11,20 +11,20 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int	ft_printenv(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("printenv: missing argument\n");
+		ft_putstr(RED "printenv: missing argument\n" RESET);
 	}
 	else
 	{
 		if (arr[1][0] == '-')
 		{
-			ft_putstr("printenv: bad option: ");
+			ft_putstr(RED "printenv: bad option: " RESET);
 			ft_putstr(arr[1]);
 			ft_putstr("\n");
 		}

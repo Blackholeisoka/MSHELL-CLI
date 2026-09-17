@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void	ft_dirname_helper(char *dir)
 {
 	int	count_slash;
 	int	max;
-	
+
 	count_slash = 0;
 	max = 0;
 	for (int i = 0; dir[i] != '\0'; i++)
@@ -45,7 +45,7 @@ int	ft_dirname(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("dirname: missing operand\n");
+		ft_putstr(RED "dirname: missing operand\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -54,7 +54,7 @@ int	ft_dirname(char **arr)
 	}
 	else
 	{
-		ft_putstr("dirname: bad option: ");
+		ft_putstr(RED "dirname: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

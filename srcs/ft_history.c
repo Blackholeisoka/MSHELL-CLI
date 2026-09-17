@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int	ft_history(char **arr)
 {
@@ -21,7 +21,7 @@ int	ft_history(char **arr)
 
 	snprintf(path_file, sizeof(path_file), "%s/.history", getenv("HOME"));
 	if (arr_size(arr) == 1)
-	{	
+	{
 		if (access(path_file, F_OK) == 0)
 		{
 			ft_print_file(path_file);
@@ -29,7 +29,7 @@ int	ft_history(char **arr)
 		}
 		else
 		{
-		ft_putstr("history: No such file or directory\n");
+			ft_putstr("history: No such file or directory\n");
 		}
 	}
 	else if (arr_size(arr) == 2 && ft_strcmp(arr[1], "-c") == 0)
@@ -38,7 +38,7 @@ int	ft_history(char **arr)
 	}
 	else
 	{
-		ft_putstr("history: bad option: ");
+		ft_putstr(RED "history: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
-#include <stdlib.h>
 #include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int	ft_kill(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("kill: missing operand\n");
+		ft_putstr(RED "kill: missing operand\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
 		for (int i = 1; arr[i] != NULL; i++)
 		{
-			if(kill(ft_atoi(arr[i]), SIGTERM) == -1)
+			if (kill(ft_atoi(arr[i]), SIGTERM) == -1)
 			{
 				ft_putstr("kill: (");
 				ft_putstr(arr[i]);
@@ -35,7 +35,7 @@ int	ft_kill(char **arr)
 	}
 	else
 	{
-		ft_putstr("kill: bad option: ");
+		ft_putstr(RED "kill: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

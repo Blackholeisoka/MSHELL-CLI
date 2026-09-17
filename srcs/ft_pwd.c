@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int	ft_pwd(char **arr)
 {
 	char	*str_path;
 
-	if (arr_size(arr) == 1)	
+	if (arr_size(arr) == 1)
 	{
 		str_path = ft_current_path();
 		ft_putstr("path: ");
@@ -27,7 +27,7 @@ int	ft_pwd(char **arr)
 	}
 	else
 	{
-		ft_putstr("pwd: bad option: ");
+		ft_putstr(RED "pwd: bad option: " RESET);
 		ft_putstr(arr[1]);
 	}
 	ft_putstr("\n");

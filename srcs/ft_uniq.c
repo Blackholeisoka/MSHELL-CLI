@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	ft_uniq_helper(char *file, int value)
 {
-	FILE *f1;
-	char *r1;
+	FILE	*f1;
+	char	*r1;
 	char	file_line[1024];
 	char	file_line_before[1024];
-	int	count;
+	int		count;
 
 	f1 = fopen(file, "r");
 	file_line_before[0] = '\0';
@@ -32,7 +32,6 @@ void	ft_uniq_helper(char *file, int value)
 		ft_putstr(": No such file or directory\n");
 		return ;
 	}
-	
 	ft_putstr("file: ");
 	ft_putstr(file);
 	ft_putstr("\n");
@@ -76,10 +75,11 @@ int	ft_uniq(char **arr)
 	start = 1;
 	if (arr_size(arr) == 1 || (arr_size(arr) == 2 && arr[1][0] == '-'))
 	{
-		ft_putstr("uniq: missing file operand\n");
+		ft_putstr(RED "uniq: missing file operand\n" RESET);
 		return (0);
 	}
-	is_valid = (ft_strcmp(arr[1], "-d") == 0 || ft_strcmp(arr[1], "-u") == 0 || arr[1][0] != '-');
+	is_valid = (ft_strcmp(arr[1], "-d") == 0 || ft_strcmp(arr[1], "-u") == 0
+			|| arr[1][0] != '-');
 	if (arr_size(arr) >= 2 && is_valid)
 	{
 		if (ft_strcmp(arr[1], "-d") == 0)
@@ -97,7 +97,7 @@ int	ft_uniq(char **arr)
 	}
 	else
 	{
-		ft_putstr("uniq: bad option: ");
+		ft_putstr(RED "uniq: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

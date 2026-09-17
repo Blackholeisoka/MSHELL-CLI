@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
-#include <time.h>
 #include <locale.h>
+#include <time.h>
+#include <unistd.h>
 
 int	ft_date(char **arr)
 {
 	char	str[1024];
-	time_t now;
+	time_t	now;
 
 	now = time(NULL);
 	setlocale(LC_TIME, "");
@@ -30,7 +30,7 @@ int	ft_date(char **arr)
 	}
 	else
 	{
-		ft_putstr("date: bad option: ");
+		ft_putstr(RED "date: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

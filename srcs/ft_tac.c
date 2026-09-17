@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	ft_tac_helper(char *file)
 {
-	int	i;
+	int		i;
 	char	arr[2000][1024];
-	FILE *f1;
-	char *r1;
+	FILE	*f1;
+	char	*r1;
 
 	f1 = fopen(file, "r");
 	i = 0;
@@ -33,7 +33,8 @@ void	ft_tac_helper(char *file)
 	ft_putstr("file: ");
 	ft_putstr(file);
 	ft_putstr("\n");
-	while ((r1 = fgets(arr[i], sizeof(arr[i]), f1))) i++;
+	while ((r1 = fgets(arr[i], sizeof(arr[i]), f1)))
+		i++;
 	i = i - 1;
 	while (i >= 0)
 		ft_putstr(arr[i--]);
@@ -45,7 +46,7 @@ int	ft_tac(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("tac: missing file operand\n");
+		ft_putstr(RED "tac: missing file operand\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -54,7 +55,7 @@ int	ft_tac(char **arr)
 	}
 	else
 	{
-		ft_putstr("tac: bad option: ");
+		ft_putstr(RED "tac: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

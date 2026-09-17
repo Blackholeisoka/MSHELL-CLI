@@ -17,11 +17,11 @@ int	ft_ln(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("ln: missing file operand\n");
+		ft_putstr(RED "ln: missing file operand\n" RESET);
 	}
 	else if (arr_size(arr) == 2)
 	{
-		ft_putstr("ln: missing destination file operand after '");
+		ft_putstr(RED "ln: missing destination file operand after '" RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("'\n");
 	}
@@ -29,7 +29,7 @@ int	ft_ln(char **arr)
 	{
 		if (link(arr[1], arr[2]) == -1)
 		{
-			ft_putstr("ln: failed to create hard link '");
+			ft_putstr(RED "ln: failed to create hard link '" RESET);
 			ft_putstr(arr[2]);
 			ft_putstr("': File exists\n");
 		}
@@ -38,7 +38,7 @@ int	ft_ln(char **arr)
 	{
 		if (symlink(arr[2], arr[3]) == -1)
 		{
-			ft_putstr("ln: failed to create symbolic link '");
+			ft_putstr(RED "ln: failed to create symbolic link '" RESET);
 			ft_putstr(arr[3]);
 			ft_putstr("': File exists\n");
 			return (1);
@@ -46,11 +46,11 @@ int	ft_ln(char **arr)
 	}
 	else if (arr_size(arr) > 4 && arr[1][0] != '-')
 	{
-		ft_putstr("ln: too many arguments\n");
+		ft_putstr(RED "ln: too many arguments\n" RESET);
 	}
 	else
 	{
-		ft_putstr("ln: bad option: ");
+		ft_putstr(RED "ln: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

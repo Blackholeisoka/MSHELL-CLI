@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	ft_tail_helper(char *file, int size)
 {
-	FILE *f1;
-	char *r1;
+	FILE	*f1;
+	char	*r1;
 	char	file_line[1024];
-	int	count;
-	int	file_size;
+	int		count;
+	int		file_size;
 
 	f1 = fopen(file, "r");
 	count = 0;
@@ -32,12 +32,12 @@ void	ft_tail_helper(char *file, int size)
 		ft_putstr(": No such file or directory\n");
 		return ;
 	}
-
 	while (TRUE)
 	{
 		file_line[0] = '\0';
 		r1 = fgets(file_line, sizeof(file_line), f1);
-		if (!r1) break ;
+		if (!r1)
+			break ;
 		if (count >= (file_size - size))
 			ft_putstr(file_line);
 		count++;
@@ -56,18 +56,18 @@ int	ft_tail(char **arr)
 	start = 0;
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("tail: missing file operand\n");
+		ft_putstr(RED "tail: missing file operand\n" RESET);
 		return (0);
 	}
 	is_valid_param = (ft_strcmp(arr[1], "-n") == 0 || arr[1][0] != '-');
-	if(arr_size(arr) >= 2 && is_valid_param)
+	if (arr_size(arr) >= 2 && is_valid_param)
 	{
 		start = 1;
 		if (ft_strcmp(arr[1], "-n") == 0)
 		{
 			if (!arr[2] || ft_atoi(arr[2]) <= 0)
 			{
-				ft_putstr("tail: invalid number of lines\n");
+				ft_putstr(RED "tail: invalid number of lines\n" RESET);
 				return (1);
 			}
 			size = ft_atoi(arr[2]);
@@ -83,7 +83,7 @@ int	ft_tail(char **arr)
 	}
 	else
 	{
-		ft_putstr("tail: bad option: ");
+		ft_putstr(RED "tail: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

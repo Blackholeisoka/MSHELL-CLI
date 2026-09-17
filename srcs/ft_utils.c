@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
-
-#define TRUE 1
+#include <unistd.h>
+#include "ft_tools.h"
 
 int	ft_strlen(char *str)
 {
@@ -23,7 +22,7 @@ int	ft_strlen(char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	    i++;
+		i++;
 	return (i);
 }
 
@@ -44,16 +43,21 @@ void	ft_putstr(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-	    	write(1, &str[i], 1);
+		write(1, &str[i], 1);
 		i++;
 	}
 }
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	int i;
-	for (i = 0; src[i] != '\0'; i++)
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
 		dest[i] = src[i];
+		i++;
+	}
 	dest[i] = '\0';
 	return (dest);
 }
@@ -71,29 +75,35 @@ int	ft_atoi(char *str)
 		i++;
 	while (str[i] == '+' || str[i] == '-')
 	{
-		if (str[i] == '-') sign *= -1;
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-		result = result * 10 + (str[i++] - '0');
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
 	return (result * sign);
 }
 
 int	ft_file_count_line(char *file)
 {
-	FILE *f1;
+	FILE	*f1;
 	char	*r1;
 	char	f1_line[1024];
-	int	count;
+	int		count;
 
-	f1 = fopen(file, "r"); if (!f1)
+	f1 = fopen(file, "r");
+	if (!f1)
 		return (-1);
 	count = 0;
 	while (TRUE)
 	{
 		f1_line[0] = '\0';
 		r1 = fgets(f1_line, sizeof(f1_line), f1);
-		if (!r1) break ;
+		if (!r1)
+			break ;
 		count++;
 	}
 	fclose(f1);
@@ -107,7 +117,7 @@ char	*ft_get_username(void)
 	if (getenv("USER"))
 		str = getenv("USER");
 	else if (getenv("LOGNAME"))
-		str=  getenv("LOGNAME");
+		str = getenv("LOGNAME");
 	else
 		str = "unknown";
 	return (str);
@@ -118,27 +128,103 @@ char	*ft_current_path(void)
 	return (getcwd(NULL, 0));
 }
 
+int	ft_match(char *str, char *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if (str[i] != token[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	ft_print_logo_char(char c)
+{
+	ft_putstr(WHITE);
+	ft_putstr(BOLD);
+	write(1, &c, 1);
+	ft_putstr(YELLOW);
+	ft_putstr(BOLD);
+}
+
 void	ft_print_file(char *str)
 {
-	int	fd;
-	int	n;
+	int		fd;
+	int		n;
+	int		i;
+	int		line;
 	char	buff[1024];
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr("mshell: header not found.\n");
+		ft_putstr("mshell: file not found.\n");
 		return ;
 	}
-	while ((n = read(fd, buff, sizeof(buff))) > 0)
-		write(1, buff, n);
+	line = 1;
+	while ((n = read(fd, buff, sizeof(buff) - 1)) > 0)
+	{
+		buff[n] = '\0';
+		i = 0;
+		while (i < n)
+		{
+			if (line <= 9
+				&& (buff[i] == '|' || buff[i] == '/'
+					|| buff[i] == '\\' || buff[i] == '_'))
+			{
+				ft_print_logo_char(buff[i]);
+				i++;
+			}
+			else if (ft_match(&buff[i], "{MAGENTA}"))
+			{
+				ft_putstr(MAGENTA);
+				i += 9;
+			}
+			else if (ft_match(&buff[i], "{GREEN}"))
+			{
+				ft_putstr(GREEN);
+				i += 7;
+			}
+			else if (ft_match(&buff[i], "{BLUE}"))
+			{
+				ft_putstr(BLUE);
+				i += 6;
+			}
+			else if (ft_match(&buff[i], "{YELLOW}"))
+			{
+				ft_putstr(YELLOW);
+				i += 8;
+			}
+			else if (ft_match(&buff[i], "{BOLD}"))
+			{
+				ft_putstr(BOLD);
+				i += 6;
+			}
+			else if (ft_match(&buff[i], "{RESET}"))
+			{
+				ft_putstr(RESET);
+				i += 7;
+			}
+			else
+			{
+				write(1, &buff[i], 1);
+				if (buff[i] == '\n')
+					line++;
+				i++;
+			}
+		}
+	}
 	close(fd);
 }
 
 int	ft_write_history(char *input)
 {
-	FILE *f1;
-	int	file_count;
+	FILE	*f1;
+	int		file_count;
 	char	path_file[1024];
 
 	snprintf(path_file, sizeof(path_file), "%s/.history", getenv("HOME"));

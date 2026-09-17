@@ -11,23 +11,23 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
-#include <stdio.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int	ft_cp_helper(char *file_src, char *path)
 {
-	
-	int	f1;
-	int	f2;
-	int n;
+	int		f1;
+	int		f2;
+	int		n;
 	char	file_src_line[1024];
 
 	f1 = open(file_src, O_RDONLY);
 	f2 = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	n = 0;
-	if (f1 < 0 || f2 < 0) return (0);
+	if (f1 < 0 || f2 < 0)
+		return (0);
 	while ((n = read(f1, file_src_line, sizeof(file_src_line))) > 0)
 		write(f2, file_src_line, n);
 	close(f1);
@@ -35,20 +35,19 @@ int	ft_cp_helper(char *file_src, char *path)
 	return (1);
 }
 
-
 int	ft_cp(char **arr)
 {
-	char	path[1024];
-	char	*dir;
+	char		path[1024];
+	char		*dir;
 	struct stat	st;
 
 	if (arr_size(arr) == 1)
 	{
-			ft_putstr("cp: missing file operand\n");
+		ft_putstr(RED "cp: missing file operand\n" RESET);
 	}
 	else if (arr_size(arr) == 2)
 	{
-		ft_putstr("cp: missing destination file operand after '");
+		ft_putstr(RED "cp: missing destination file operand after '" RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("'\n");
 	}
@@ -71,7 +70,7 @@ int	ft_cp(char **arr)
 	}
 	else
 	{
-		ft_putstr("cp: bad option: ");
+		ft_putstr(RED "cp: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

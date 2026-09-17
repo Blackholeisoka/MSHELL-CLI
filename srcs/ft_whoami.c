@@ -15,13 +15,13 @@
 
 int	ft_whoami(char **arr)
 {
-	if (arr_size(arr) == 1)	
+	if (arr_size(arr) == 1)
 	{
 		ft_putstr(ft_get_username());
 	}
 	else
 	{
-		ft_putstr("whoami: bad option: ");
+		ft_putstr(RED "whoami: bad option: " RESET);
 		ft_putstr(arr[1]);
 	}
 	ft_putstr("\n");

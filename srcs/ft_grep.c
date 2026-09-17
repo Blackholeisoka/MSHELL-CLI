@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 int	ft_strstr(char *str, char *file_line)
 {
@@ -36,11 +36,11 @@ int	ft_strstr(char *str, char *file_line)
 
 void	ft_grep_helper(char *str, char *file, int value)
 {
-	FILE *f1;
+	FILE	*f1;
 	char	*r1;
 	char	file_line[1024];
-	int	count_line;
-	int	count;
+	int		count_line;
+	int		count;
 
 	f1 = fopen(file, "r");
 	count_line = 1;
@@ -59,7 +59,8 @@ void	ft_grep_helper(char *str, char *file, int value)
 	{
 		file_line[0] = '\0';
 		r1 = fgets(file_line, sizeof(file_line), f1);
-		if (!r1) break ;
+		if (!r1)
+			break ;
 		if (value == 0)
 		{
 			if (ft_strstr(str, file_line))
@@ -102,15 +103,16 @@ int	ft_grep(char **arr)
 	value = 0;
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("grep: missing pattern\n");
+		ft_putstr(RED "grep: missing pattern\n" RESET);
 	}
 	else if (arr_size(arr) == 2)
 	{
-		ft_putstr("grep: missing file operand\n");
+		ft_putstr(RED "grep: missing file operand\n" RESET);
 	}
 	if (arr_size(arr) >= 3)
 	{
-		valid_params = (ft_strcmp(arr[1], "-n") == 0 || ft_strcmp(arr[1], "-v") == 0);
+		valid_params = (ft_strcmp(arr[1], "-n") == 0 || ft_strcmp(arr[1],
+					"-v") == 0);
 		if (valid_params)
 		{
 			value = (ft_strcmp(arr[1], "-n") == 0) ? 1 : 2;
@@ -124,11 +126,10 @@ int	ft_grep(char **arr)
 		}
 		else
 		{
-			ft_putstr("grep: bad option: ");
+			ft_putstr(RED "grep: bad option: " RESET);
 			ft_putstr(arr[1]);
 			ft_putstr("\n");
 		}
 	}
-
 	return (0);
 }

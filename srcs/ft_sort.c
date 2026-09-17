@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	ft_sort_arr(char arr[][1024], int value, int count)
 {
@@ -27,8 +27,8 @@ void	ft_sort_arr(char arr[][1024], int value, int count)
 		i = 0;
 		while (i < count - 1)
 		{
-			if ((value == 0 && ft_strcmp(arr[i], arr[i + 1]) > 0)
-				|| (value == 1 && ft_strcmp(arr[i], arr[i + 1]) < 0))
+			if ((value == 0 && ft_strcmp(arr[i], arr[i + 1]) > 0) || (value == 1
+					&& ft_strcmp(arr[i], arr[i + 1]) < 0))
 			{
 				ft_strcpy(temp, arr[i]);
 				ft_strcpy(arr[i], arr[i + 1]);
@@ -45,7 +45,7 @@ int	ft_sort_helper(char *file, int value)
 	FILE	*f1;
 	char	arr[2000][1024];
 	int		count;
-	int	i;
+	int		i;
 
 	count = 0;
 	f1 = fopen(file, "r");
@@ -58,7 +58,7 @@ int	ft_sort_helper(char *file, int value)
 	while (fgets(arr[count], 1024, f1))
 		count++;
 	fclose(f1);
-	ft_sort_arr(arr, value, count); 
+	ft_sort_arr(arr, value, count);
 	i = 0;
 	ft_putstr(file);
 	ft_putstr(":\n");
@@ -76,7 +76,8 @@ int	ft_sort(char **arr)
 	{
 		ft_putstr("no such file or directory\n");
 	}
-	else if (arr_size(arr) >= 2 && (ft_strcmp(arr[1], "-r") == 0 || arr[1][0] != '-'))
+	else if (arr_size(arr) >= 2 && (ft_strcmp(arr[1], "-r") == 0
+			|| arr[1][0] != '-'))
 	{
 		if (ft_strcmp(arr[1], "-r") == 0)
 			start = 2;
@@ -85,7 +86,7 @@ int	ft_sort(char **arr)
 	}
 	else
 	{
-		ft_putstr("sort: bad option: ");
+		ft_putstr(RED "sort: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

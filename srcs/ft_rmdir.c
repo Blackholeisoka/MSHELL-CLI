@@ -15,9 +15,9 @@
 
 int	ft_rmdir(char **arr)
 {
-	if (arr_size(arr) ==  1)
+	if (arr_size(arr) == 1)
 	{
-			ft_putstr("rmdir: no such directory\n");
+		ft_putstr(RED "rmdir: no such directory\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -25,7 +25,7 @@ int	ft_rmdir(char **arr)
 		{
 			if (rmdir(arr[i]) == -1)
 			{
-				ft_putstr("rmdir: cannot remove'");
+				ft_putstr(RED "rmdir: cannot remove'" RESET);
 				ft_putstr(arr[i]);
 				ft_putstr("': Permission denied\n");
 			}
@@ -33,7 +33,7 @@ int	ft_rmdir(char **arr)
 	}
 	else
 	{
-		ft_putstr("rmdir: bad option: \n");
+		ft_putstr(RED "rmdir: bad option: \n" RESET);
 		ft_putstr(arr[1]);
 	}
 	return (0);

@@ -12,12 +12,11 @@
 
 #include "../includes/ft_tools.h"
 #include <unistd.h>
-#include <stdlib.h>
 
 void	ft_basename_helper(char *dir)
 {
 	int	max;
-	
+
 	max = -1;
 	for (int i = 0; dir[i] != '\0'; i++)
 		if (dir[i] == '/' && dir[i + 1] != '\0')
@@ -31,7 +30,7 @@ int	ft_basename(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("basename: missing operand\n");
+		ft_putstr(RED "basename: missing operand\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -40,7 +39,7 @@ int	ft_basename(char **arr)
 	}
 	else
 	{
-		ft_putstr("basename: bad option: ");
+		ft_putstr(RED "basename: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

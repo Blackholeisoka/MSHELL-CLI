@@ -13,72 +13,76 @@
 #ifndef FT_TOOLS_H
 # define FT_TOOLS_H
 
-#define HEADER "header.txt"
-#define CLEAR "\033[H\033[2J\033[3J"
-#define TRUE 1
-#define FALSE 0
+# define RESET   "\033[0m"
+# define RED     "\033[31m"
+# define GREEN   "\033[32m"
+# define YELLOW  "\033[33m"
+# define BLUE    "\033[34m"
+# define MAGENTA "\033[35m"
+# define CYAN    "\033[36m"
+# define WHITE   "\033[37m"
+# define BOLD    "\033[1m"
 
 typedef struct s_parsing
 {
 	char	*command;
-	int	(*function)(char **input_params);
-}	t_parsing;
+	int		(*function)(char **input_params);
+}			t_parsing;
 
 typedef struct s_help
 {
 	char	*command;
 	char	*description;
-}	t_help;
+}			t_help;
 
-
-int	ft_strlen(char *str);
-int	ft_strcmp(char *s1, char *s2);
-int	arr_size(char **arr);
-int	ft_parse_cmd(char *str);
-int	ft_atoi(char *str);
-int	ft_file_count_line(char *file);
-int	ft_write_history(char *input);
-char	*ft_strcpy(char *dest, char *src);
-char	*ft_current_path(void);
-char	*ft_get_username(void);
-char	*ft_skip_whitespaces(char *str);
-char	**ft_split(char *str, char *charset);
-void	ft_putstr(char *str);
-void	ft_print_file(char *str);
-void	ft_putnbr(int nb);
-int	ft_pwd(char **arr);
-int	ft_ln(char **arr);
-int	ft_yes(char **arr);
-int	ft_head(char **arr);
-int	ft_uniq(char **arr);
-int	ft_tac(char **arr);
-int	ft_mv(char **arr);
-int	ft_tail(char **arr);
-int	ft_cp(char **arr);
-int	ft_kill(char **arr);
-int	ft_help(char **arr);
-int	ft_history(char **arr);
-int	ft_clear(char **arr);
-int	ft_env(char **arr);
-int	ft_touch(char **arr);
-int	ft_diff(char **arr);
-int	ft_echo(char **arr);
-int	ft_mkdir(char **arr);
-int	ft_printenv(char **arr);
-int	ft_grep(char **arr);
-int	ft_which(char **arr);
-int	ft_date(char **arr);
-int	ft_wc(char **arr);
-int	ft_rev(char **arr);
-int	ft_export(char **arr);
-int	ft_dirname(char **arr);
-int	ft_basename(char **arr);
-int	ft_rm(char **arr);
-int	ft_rmdir(char **arr);
-int	ft_ls(char **arr);
-int	ft_whoami(char **arr);
-int	ft_cd(char **arr);
-int	ft_cat(char **arr);
+int			ft_strlen(char *str);
+int			ft_strcmp(char *s1, char *s2);
+int			arr_size(char **arr);
+int			ft_parse_cmd(char *str);
+int			ft_atoi(char *str);
+int			ft_file_count_line(char *file);
+int			ft_write_history(char *input);
+char		*ft_strcpy(char *dest, char *src);
+char		*ft_current_path(void);
+char		*ft_get_username(void);
+char		*ft_skip_whitespaces(char *str);
+char		**ft_split(char *str, char *charset);
+void		ft_putstr(char *str);
+void		ft_print_file(char *str);
+void		ft_putnbr(int nb);
+int			ft_pwd(char **arr);
+int			ft_ln(char **arr);
+int			ft_yes(char **arr);
+int			ft_head(char **arr);
+int			ft_uniq(char **arr);
+int			ft_tac(char **arr);
+int			ft_mv(char **arr);
+int			ft_tail(char **arr);
+int			ft_cp(char **arr);
+int			ft_kill(char **arr);
+int			ft_help(char **arr);
+int			ft_history(char **arr);
+int			ft_clear(char **arr);
+int			ft_env(char **arr);
+int			ft_touch(char **arr);
+int			ft_diff(char **arr);
+int			ft_echo(char **arr);
+int			ft_mkdir(char **arr);
+int			ft_printenv(char **arr);
+int			ft_grep(char **arr);
+int			ft_which(char **arr);
+int			ft_date(char **arr);
+int			ft_wc(char **arr);
+int			ft_rev(char **arr);
+int			ft_export(char **arr);
+int			ft_dirname(char **arr);
+int			ft_basename(char **arr);
+int			ft_rm(char **arr);
+int			ft_rmdir(char **arr);
+int			ft_ls(char **arr);
+int			ft_whoami(char **arr);
+int			ft_cd(char **arr);
+int			ft_cat(char **arr);
 t_parsing	*ft_get_struct_parsing(void);
 
 #endif

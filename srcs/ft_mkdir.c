@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int	ft_mkdir(char **arr)
 {
-	if (arr_size(arr) ==  1)
+	if (arr_size(arr) == 1)
 	{
-			ft_putstr("mkdir: no such file or directory\n");
+		ft_putstr(RED "mkdir: no such file or directory\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -26,7 +26,7 @@ int	ft_mkdir(char **arr)
 		{
 			if (mkdir(arr[i], 0755) == -1)
 			{
-				ft_putstr("mkdir: cannot create'");
+				ft_putstr(RED "mkdir: cannot create'" RESET);
 				ft_putstr(arr[i]);
 				ft_putstr("': Permission denied\n");
 			}
@@ -34,7 +34,7 @@ int	ft_mkdir(char **arr)
 	}
 	else
 	{
-		ft_putstr("mkdir: bad option: \n");
+		ft_putstr(RED "mkdir: bad option: \n" RESET);
 		ft_putstr(arr[1]);
 	}
 	return (0);

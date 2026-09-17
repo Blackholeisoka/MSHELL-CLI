@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	ft_putstr_rev(char *str)
 {
@@ -22,8 +22,8 @@ void	ft_putstr_rev(char *str)
 
 void	ft_rev_helper(char *file)
 {
-	FILE *f1;
-	char *r1;
+	FILE	*f1;
+	char	*r1;
 	char	file_line[1024];
 
 	f1 = fopen(file, "r");
@@ -34,12 +34,12 @@ void	ft_rev_helper(char *file)
 		ft_putstr(": No such file or directory\n");
 		return ;
 	}
-
 	while (TRUE)
 	{
 		file_line[0] = '\0';
 		r1 = fgets(file_line, sizeof(file_line), f1);
-		if (!r1) break ;
+		if (!r1)
+			break ;
 		if (file_line[ft_strlen(file_line) - 1] == '\n')
 			file_line[ft_strlen(file_line) - 1] = '\0';
 		ft_putstr_rev(file_line);
@@ -53,7 +53,7 @@ int	ft_rev(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("rev: missing argument\n");
+		ft_putstr(RED "rev: missing argument\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
@@ -67,7 +67,7 @@ int	ft_rev(char **arr)
 	}
 	else
 	{
-		ft_putstr("rev: bad option: ");
+		ft_putstr(RED "rev: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

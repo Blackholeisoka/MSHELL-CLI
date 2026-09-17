@@ -38,7 +38,7 @@ int	ft_echo(char **arr)
 	}
 	else if (arr[1][0] == '-')
 	{
-		ft_putstr("echo: bad option: ");
+		ft_putstr(RED "echo: bad option: " RESET);
 		ft_putstr(arr[1]);
 	}
 	else

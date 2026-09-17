@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
+#include <dirent.h>
 #include <stdio.h>
 #include <sys/stat.h>
-#include <dirent.h>
+#include <unistd.h>
 
 void	ft_rm_recursive(char *path)
 {
@@ -29,7 +29,7 @@ void	ft_rm_recursive(char *path)
 	{
 		if (unlink(path) == -1)
 		{
-			ft_putstr("rm: cannot remove '");
+			ft_putstr(RED "rm: cannot remove '" RESET);
 			ft_putstr(path);
 			ft_putstr("'\n");
 		}
@@ -38,7 +38,7 @@ void	ft_rm_recursive(char *path)
 	dir = opendir(path);
 	if (!dir)
 	{
-		ft_putstr("rm: cannot open '");
+		ft_putstr(RED "rm: cannot open '" RESET);
 		ft_putstr(path);
 		ft_putstr("'\n");
 		return ;
@@ -53,7 +53,7 @@ void	ft_rm_recursive(char *path)
 	closedir(dir);
 	if (rmdir(path) == -1)
 	{
-		ft_putstr("rm: cannot remove directory '");
+		ft_putstr(RED "rm: cannot remove directory '" RESET);
 		ft_putstr(path);
 		ft_putstr("'\n");
 	}
@@ -61,20 +61,20 @@ void	ft_rm_recursive(char *path)
 
 int	ft_rm(char **arr)
 {
-	if (arr_size(arr) ==  1)
+	if (arr_size(arr) == 1)
 	{
-			ft_putstr("rm: no such file\n");
+		ft_putstr(RED "rm: no such file\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && ft_strcmp(arr[1], "-r") == 0)
 	{
 		if (arr_size(arr) == 2)
 		{
-			ft_putstr("rm: missing operand\n");
+			ft_putstr(RED "rm: missing operand\n" RESET);
 		}
 		else
 		{
-		for (int i = 2; i < arr_size(arr); i++)
-			ft_rm_recursive(arr[i]);
+			for (int i = 2; i < arr_size(arr); i++)
+				ft_rm_recursive(arr[i]);
 		}
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
@@ -83,7 +83,7 @@ int	ft_rm(char **arr)
 		{
 			if (unlink(arr[i]) == -1)
 			{
-				ft_putstr("rm: cannot remove'");
+				ft_putstr(RED "rm: cannot remove'" RESET);
 				ft_putstr(arr[i]);
 				ft_putstr("': Permission denied\n");
 			}
@@ -91,7 +91,7 @@ int	ft_rm(char **arr)
 	}
 	else
 	{
-		ft_putstr("rm: bad option: ");
+		ft_putstr(RED "rm: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

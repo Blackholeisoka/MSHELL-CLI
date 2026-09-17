@@ -1,5 +1,5 @@
-
-$$\      $$\           $$\                 $$\ $$\ 
+{BOLD}{YELLOW}
+$$\      $$\           $$\                 $$\ $$\
 $$$\    $$$ |          $$ |                $$ |$$ |
 $$$$\  $$$$ | $$$$$$$\ $$$$$$$\   $$$$$$\  $$ |$$ |
 $$\$$\$$ $$ |$$  _____|$$  __$$\ $$  __$$\ $$ |$$ |
@@ -7,10 +7,10 @@ $$ \$$$  $$ |\$$$$$$\  $$ |  $$ |$$$$$$$$ |$$ |$$ |
 $$ |\$  /$$ | \____$$\ $$ |  $$ |$$   ____|$$ |$$ |
 $$ | \_/ $$ |$$$$$$$  |$$ |  $$ |\$$$$$$$\ $$ |$$ |
 \__|     \__|\_______/ \__|  \__| \_______|\__|\__|
- 
-     a minimal shell, written in C — v0.1
+{RESET}
+{BOLD}     a minimal shell, written in C — v0.1{RESET}{RESET}
 
-[-] Autor by:  - Blackholeisoka
-[-] Build:     - September 2k26 
-[-] Help:      - type 'help' for commands
+{YELLOW}[-]{GREEN} Autor by:{RESET}  - {BLUE}Blackholeisoka{RESET}
+{YELLOW}[-]{GREEN} Build:{RESET}     - {BLUE}September 2k26{RESET}
+{YELLOW}[-]{GREEN} Help:{RESET}      - {BLUE}type '{BOLD}help'{RESET} {BLUE}for commands{RESET}
 

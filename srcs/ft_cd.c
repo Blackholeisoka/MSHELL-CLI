@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int	ft_cd(char **arr)
 {
@@ -20,7 +20,7 @@ int	ft_cd(char **arr)
 
 	if (arr_size(arr) < 3)
 	{
-		if (arr_size(arr) == 1)	
+		if (arr_size(arr) == 1)
 			str = getenv("HOME");
 		else
 			str = arr[1];
@@ -29,7 +29,7 @@ int	ft_cd(char **arr)
 	}
 	else
 	{
-		ft_putstr("cd: bad option: ");
+		ft_putstr(RED "cd: bad option: " RESET);
 		ft_putstr(arr[2]);
 		ft_putstr("\n");
 	}

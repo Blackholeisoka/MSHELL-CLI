@@ -11,27 +11,25 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	ft_diff_compare_display(char *file_1, char *file_2)
 {
-
-	FILE *f1;
-	FILE *f2;
+	FILE	*f1;
+	FILE	*f2;
 	char	f1_line[1024];
 	char	f2_line[1024];
 	char	*r1;
 	char	*r2;
-	int	count_diff;
-	int	count_line;
+	int		count_diff;
+	int		count_line;
 
 	f1 = fopen(file_1, "r");
 	f2 = fopen(file_2, "r");
-	
 	if (!f1 || !f2)
 	{
-		ft_putstr("diff: cannot open file\n");
+		ft_putstr(RED "diff: cannot open file\n" RESET);
 		if (f1)
 			fclose(f1);
 		if (f2)
@@ -53,7 +51,6 @@ void	ft_diff_compare_display(char *file_1, char *file_2)
 			ft_putstr("diff: ");
 			ft_putnbr(count_diff);
 			ft_putstr("\n");
-
 			ft_putstr("<< ");
 			ft_putstr(file_1);
 			if (r1)
@@ -65,10 +62,8 @@ void	ft_diff_compare_display(char *file_1, char *file_2)
 				ft_putstr("END");
 			ft_putstr("\n");
 			ft_putstr(f1_line);
-
 			ft_putstr("-----");
 			ft_putstr("\n");
-
 			ft_putstr(">> ");
 			ft_putstr(file_2);
 			if (r2)
@@ -93,19 +88,19 @@ int	ft_diff(char **arr)
 {
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("diff: missing argument\n");
+		ft_putstr(RED "diff: missing argument\n" RESET);
 	}
 	else if (arr_size(arr) == 2)
 	{
 		if (arr[1][0] == '-')
 		{
-			ft_putstr("diff: bad option: ");
+			ft_putstr(RED "diff: bad option: " RESET);
 			ft_putstr(arr[1]);
 			ft_putstr("\n");
 		}
 		else
 		{
-			ft_putstr("diff: missing operand after '");
+			ft_putstr(RED "diff: missing operand after '" RESET);
 			ft_putstr(arr[1]);
 			ft_putstr("'\n");
 		}
@@ -116,7 +111,7 @@ int	ft_diff(char **arr)
 	}
 	else
 	{
-		ft_putstr("diff: too many arguments\n");
+		ft_putstr(RED "diff: too many arguments\n" RESET);
 	}
 	return (0);
 }

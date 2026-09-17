@@ -11,34 +11,35 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 int	ft_touch(char **arr)
 {
-	if (arr_size(arr) ==  1)
+	int	fd;
+
+	if (arr_size(arr) == 1)
 	{
-			ft_putstr("touch: no such file or directory\n");
+		ft_putstr(RED "touch: no such file or directory\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
 		for (int i = 1; i < arr_size(arr); i++)
 		{
-			int	fd;
-
 			fd = open(arr[i], O_CREAT | O_WRONLY, 0644);
 			if (fd < 0)
 			{
-				ft_putstr("touch: cannot touch '");
+				ft_putstr(RED "touch: cannot touch '" RESET);
 				ft_putstr(arr[i]);
 				ft_putstr("': Permission denied\n");
 			}
-			close(fd);
+			else
+				close(fd);
 		}
 	}
 	else
 	{
-		ft_putstr("touch: bad option: \n");
+		ft_putstr(RED "touch: bad option: \n" RESET);
 		ft_putstr(arr[1]);
 	}
 	return (0);

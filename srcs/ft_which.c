@@ -11,24 +11,24 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int	ft_which(char **arr)
 {
 	char	**path;
 	char	program[1024];
-	int	is_valid;
+	int		is_valid;
 
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("which: missing argument\n");
+		ft_putstr(RED "which: missing argument\n" RESET);
 	}
 	else if (arr_size(arr) >= 2 && arr[1][0] != '-')
 	{
 		path = ft_split(getenv("PATH"), ":");
-		for (int i = 1; arr[i] != NULL; i++)		
+		for (int i = 1; arr[i] != NULL; i++)
 		{
 			is_valid = 0;
 			for (int j = 0; path[j] != NULL && !is_valid; j++)
@@ -48,12 +48,11 @@ int	ft_which(char **arr)
 				ft_putstr(arr[i]);
 				ft_putstr(": not found\n");
 			}
-				
 		}
 	}
 	else
 	{
-		ft_putstr("which: bad option: ");
+		ft_putstr(RED "which: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

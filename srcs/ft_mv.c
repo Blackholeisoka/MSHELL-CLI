@@ -11,23 +11,23 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdio.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int	ft_mv(char **arr)
 {
-	char	path[1024];
-	char	*dir;
+	char		path[1024];
+	char		*dir;
 	struct stat	st;
 
 	if (arr_size(arr) == 1)
 	{
-			ft_putstr("mv: missing file operand\n");
+		ft_putstr(RED "mv: missing file operand\n" RESET);
 	}
 	else if (arr_size(arr) == 2)
 	{
-		ft_putstr("mv: missing destination file operand after '");
+		ft_putstr(RED "mv: missing destination file operand after '" RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("'\n");
 	}
@@ -50,7 +50,7 @@ int	ft_mv(char **arr)
 	}
 	else
 	{
-		ft_putstr("mv: bad option: ");
+		ft_putstr(RED "mv: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

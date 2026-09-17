@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int	ft_atoi_octal(char *str)
 {
@@ -26,7 +26,8 @@ int	ft_atoi_octal(char *str)
 	{
 		if (str[i] >= '0' && str[i] <= '7')
 			result = result * 8 + (str[i++] - '0');
-		else return (-1);
+		else
+			return (-1);
 	}
 	return (result);
 }
@@ -38,11 +39,11 @@ int	ft_chmod(char **arr)
 	mode = 0;
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("chmod: missing operand\n");
+		ft_putstr(RED "chmod: missing operand\n" RESET);
 	}
 	else if (arr_size(arr) == 2)
 	{
-		ft_putstr("chmod: missing operand after '");
+		ft_putstr(RED "chmod: missing operand after '" RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("'\n");
 	}
@@ -51,24 +52,24 @@ int	ft_chmod(char **arr)
 		mode = ft_atoi_octal(arr[1]);
 		if (mode == -1)
 		{
-			ft_putstr("chmod: invalid mode: '");
+			ft_putstr(RED "chmod: invalid mode: '" RESET);
 			ft_putstr(arr[1]);
 			ft_putstr("'\n");
 			return (0);
-		}	
-		for (int i = 2; arr[i] != NULL; i++)		
+		}
+		for (int i = 2; arr[i] != NULL; i++)
 		{
 			if (chmod(arr[i], mode) == -1)
 			{
-				ft_putstr("chmod: cannot access '");
+				ft_putstr(RED "chmod: cannot access '" RESET);
 				ft_putstr(arr[i]);
-				ft_putstr("': No such file or directory\n");	
+				ft_putstr("': No such file or directory\n");
 			}
 		}
 	}
 	else
 	{
-		ft_putstr("chmod: bad option: ");
+		ft_putstr(RED "chmod: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

@@ -15,14 +15,14 @@
 
 int	ft_clear(char **arr)
 {
-	if (arr_size(arr) == 1)	
+	if (arr_size(arr) == 1)
 	{
 		ft_putstr(CLEAR);
 		ft_print_file(HEADER);
 	}
 	else
 	{
-		ft_putstr("clear: bad option: ");
+		ft_putstr(RED "clear: bad option: " RESET);
 		ft_putstr(arr[1]);
 		ft_putstr("\n");
 	}

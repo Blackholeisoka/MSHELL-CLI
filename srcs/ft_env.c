@@ -30,8 +30,8 @@ int	ft_env(char **arr)
 	{
 		if (arr[1][0] == '-')
 		{
-			ft_putstr("env: bad option: ");
-			ft_putstr(arr[2]);
+			ft_putstr(RED "env: bad option: " RESET);
+			ft_putstr(arr[1]);
 			ft_putstr("\n");
 		}
 		else

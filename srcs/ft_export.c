@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_tools.h"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int	ft_have_equal(char **arr)
 {
 	for (int i = 0; arr[i] != NULL; i++)
 		for (int j = 0; arr[i][j] != '\0'; j++)
-			if(arr[i][j] == '=')
+			if (arr[i][j] == '=')
 				return (1);
 	return (0);
 }
@@ -26,15 +26,16 @@ int	ft_have_equal(char **arr)
 int	ft_export(char **arr)
 {
 	char	**env_export;
+
 	if (arr_size(arr) == 1)
 	{
-		ft_putstr("export: missing argument\n");
+		ft_putstr(RED "export: missing argument\n" RESET);
 	}
 	else
 	{
 		if (arr[1][0] == '-')
 		{
-			ft_putstr("export: bad option: ");
+			ft_putstr(RED "export: bad option: " RESET);
 			ft_putstr(arr[1]);
 			ft_putstr("\n");
 		}
@@ -43,9 +44,10 @@ int	ft_export(char **arr)
 			for (int i = 1; arr[i] != NULL; i++)
 			{
 				env_export = ft_split(arr[i], "=");
-				if (!ft_have_equal(env_export) || setenv(env_export[0], env_export[1], 1) == -1)
+				if (!ft_have_equal(env_export) || setenv(env_export[0],
+						env_export[1], 1) == -1)
 				{
-					ft_putstr("export: cannot set '");
+					ft_putstr(RED "export: cannot set '" RESET);
 					ft_putstr(env_export[0]);
 					ft_putstr("'\n");
 					return (1);

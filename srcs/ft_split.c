@@ -47,7 +47,8 @@ int	words_counts(char *str, char *charset)
 	count = 0;
 	while (str[i] != '\0')
 	{
-		if ((!is_a_charset(str[i], charset)) && (i == 0 || is_a_charset(str[i - 1], charset)))
+		if ((!is_a_charset(str[i], charset)) && (i == 0 || is_a_charset(str[i
+					- 1], charset)))
 			count++;
 		i++;
 	}

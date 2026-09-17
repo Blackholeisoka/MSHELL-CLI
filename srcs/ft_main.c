@@ -10,21 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include "../includes/ft_tools.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 void	ft_print_current_path(void)
 {
 	char	*str_path;
 
 	str_path = ft_current_path();
-	ft_putstr("[-] ");
+	ft_putstr(GREEN "[-] " RESET);
+	ft_putstr(BOLD GREEN);
 	ft_putstr(ft_get_username());
-	ft_putstr(" · ~/");
+	ft_putstr(RESET);
+	ft_putstr(" · ");
+	ft_putstr(BLUE);
+	ft_putstr("~/");
 	ft_putstr((str_path + 7 + ft_strlen(ft_get_username())));
+	ft_putstr(RESET);
 	ft_putstr(">\n ▶ ");
 	free(str_path);
 }
@@ -34,13 +39,12 @@ int	main(int argc, char *argv[])
 	char	*input;
 	size_t	size;
 	ssize_t	n;
-	
+
 	(void)argc;
 	(void)argv;
 	input = NULL;
 	ft_putstr(CLEAR);
 	ft_print_file(HEADER);
-
 	while (TRUE)
 	{
 		ft_print_current_path();
@@ -56,6 +60,9 @@ int	main(int argc, char *argv[])
 			break ;
 		ft_parse_cmd(input);
 	}
-	ft_putstr("\n[-] mshell: session ended\n");
+	ft_putstr("\n");
+	ft_putstr(YELLOW "[-]" RESET);
+	ft_putstr(GREEN " mshell:" RESET);
+	ft_putstr(" session ended\n");
 	return (0);
 }

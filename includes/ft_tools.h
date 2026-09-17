@@ -13,6 +13,10 @@
 #ifndef FT_TOOLS_H
 # define FT_TOOLS_H
 
+# define HEADER  "header.txt"
+# define CLEAR   "\033[H\033[2J\033[3J"
+# define TRUE    1
+# define FALSE   0
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"

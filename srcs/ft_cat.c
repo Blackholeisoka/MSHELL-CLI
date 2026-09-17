@@ -13,6 +13,21 @@
 #include "../includes/ft_tools.h"
 #include <dirent.h>
 #include <unistd.h>
+#include <fcntl.h>
+
+void	ft_print_file_raw(char *str)
+{
+	int		fd;
+	int		n;
+	char	buff[1024];
+
+	fd = open(str, O_RDONLY);
+	if (fd < 0)
+		return ;
+	while ((n = read(fd, buff, sizeof(buff))) > 0)
+		write(1, buff, n);
+	close(fd);
+}
 
 int	ft_print_file_extension(char **arr)
 {
@@ -20,14 +35,16 @@ int	ft_print_file_extension(char **arr)
 	struct dirent	*e;
 	char			*str;
 	int				same;
-	int i, j;
+	int				i;
+	int				j;
 
 	dir = opendir(".");
-	same = 0, i = 0, j = 0;
 	while ((e = readdir(dir)))
 	{
 		str = e->d_name;
-		same = 0, i = 0, j = 1;
+		same = 0;
+		i = 0;
+		j = 1;
 		while ((str[i] != '\0') && (str[i] != '.'))
 			i++;
 		while (str[i] != '\0' && arr[1][j] != '\0')
@@ -39,10 +56,10 @@ int	ft_print_file_extension(char **arr)
 		}
 		if (same == 0 && str[i] == arr[1][j])
 		{
+			ft_putstr(YELLOW "file: " RESET);
 			ft_putstr(str);
-			ft_putstr(": ------------\n");
 			ft_putstr("\n");
-			ft_print_file(str);
+			ft_print_file_raw(str);
 			ft_putstr("\n");
 		}
 	}
@@ -55,6 +72,7 @@ int	ft_cat(char **arr)
 	DIR				*dir;
 	struct dirent	*e;
 	int				size;
+	int				i;
 
 	size = arr_size(arr);
 	if (size == 1)
@@ -68,7 +86,7 @@ int	ft_cat(char **arr)
 		while ((e = readdir(dir)))
 		{
 			if (arr[1][1] == '\0')
-				ft_print_file(e->d_name);
+				ft_print_file_raw(e->d_name);
 			else
 			{
 				closedir(dir);
@@ -80,7 +98,8 @@ int	ft_cat(char **arr)
 	}
 	else if (size > 1)
 	{
-		for (int i = 1; i < size; i++)
+		i = 1;
+		while (i < size)
 		{
 			if (arr[i][0] == '-')
 			{
@@ -89,17 +108,20 @@ int	ft_cat(char **arr)
 				ft_putstr("\n");
 				return (1);
 			}
+			i++;
 		}
-		for (int i = 1; i < size; i++)
+		i = 1;
+		while (i < size)
 		{
 			if (access(arr[i], F_OK) == 0)
 			{
+				ft_putstr(YELLOW "file: " RESET);
 				ft_putstr(arr[i]);
-				ft_putstr(": ------------\n");
 				ft_putstr("\n");
-				ft_print_file(arr[i]);
+				ft_print_file_raw(arr[i]);
 				ft_putstr("\n");
 			}
+			i++;
 		}
 	}
 	return (0);

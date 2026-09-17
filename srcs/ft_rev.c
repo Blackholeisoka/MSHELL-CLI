@@ -59,7 +59,7 @@ int	ft_rev(char **arr)
 	{
 		for (int i = 1; arr[i] != NULL; i++)
 		{
-			ft_putstr("file: ");
+			ft_putstr(YELLOW "file: " RESET);
 			ft_putstr(arr[i]);
 			ft_putstr("\n");
 			ft_rev_helper(arr[i]);

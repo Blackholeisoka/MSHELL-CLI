@@ -52,7 +52,7 @@ void	ft_grep_helper(char *str, char *file, int value)
 		ft_putstr(": No such file or directory\n");
 		return ;
 	}
-	ft_putstr("file: ");
+	ft_putstr(YELLOW "file: " RESET);
 	ft_putstr(file);
 	ft_putstr("\n");
 	while (TRUE)

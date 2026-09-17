@@ -30,7 +30,7 @@ void	ft_tac_helper(char *file)
 		ft_putstr(": No such file or directory\n");
 		return ;
 	}
-	ft_putstr("file: ");
+	ft_putstr(YELLOW "file: " RESET);
 	ft_putstr(file);
 	ft_putstr("\n");
 	while ((r1 = fgets(arr[i], sizeof(arr[i]), f1)))

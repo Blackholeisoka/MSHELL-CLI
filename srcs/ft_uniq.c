@@ -32,7 +32,7 @@ void	ft_uniq_helper(char *file, int value)
 		ft_putstr(": No such file or directory\n");
 		return ;
 	}
-	ft_putstr("file: ");
+	ft_putstr(YELLOW "file: " RESET);
 	ft_putstr(file);
 	ft_putstr("\n");
 	if (value == 0)

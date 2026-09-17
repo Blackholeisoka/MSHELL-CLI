@@ -72,7 +72,7 @@ int	ft_head(char **arr)
 		}
 		for (int i = start; arr[i] != NULL; i++)
 		{
-			ft_putstr("file: ");
+			ft_putstr(YELLOW "file: " RESET);
 			ft_putstr(arr[i]);
 			ft_putstr("\n");
 			ft_head_helper(arr[i], size);

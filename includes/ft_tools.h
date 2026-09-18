@@ -39,6 +39,7 @@ typedef struct s_help
 	char	*description;
 }			t_help;
 
+int			ft_exec_external(char **args);
 int			ft_strlen(char *str);
 int			ft_strcmp(char *s1, char *s2);
 int			arr_size(char **arr);
@@ -48,6 +49,7 @@ int			ft_file_count_line(char *file);
 int			ft_write_history(char *input);
 char		*ft_strcpy(char *dest, char *src);
 char		*ft_current_path(void);
+char	*ft_find_path(char *input);
 char		*ft_get_username(void);
 char		*ft_skip_whitespaces(char *str);
 char		**ft_split(char *str, char *charset);

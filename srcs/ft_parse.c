@@ -70,8 +70,5 @@ int	ft_parse_cmd(char *str)
 			return (arr[i].function(string_params));
 		i++;
 	}
-	ft_putstr("command not found: ");
-	ft_putstr(string_params[0]);
-	ft_putstr("\n");
-	return (127);
+	return (ft_exec_external(string_params));
 }

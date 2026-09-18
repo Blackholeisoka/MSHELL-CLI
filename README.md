@@ -37,18 +37,9 @@ The project started as a way to understand how a real shell works under the hood
 
 ## Preview
 
-<div align="center">
-
-### Launch & header
-![Launch](docs/launch.png)
-
-### Colored `ls -l`
-![Colored ls](docs/ls.png)
-
-### Built-in commands (`help`)
-![Commands](docs/help.png)
-
-</div>
+| Launch | ls -l | help |
+|--------|-------|------|
+| ![](docs/launch.png) | ![](docs/ls.png) | ![](docs/help.png) |
 
 ---
 
